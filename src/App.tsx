@@ -11,20 +11,15 @@ function App() {
   const lastNameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const data = await fetch("https://randomuser.me/api/");
-    //   const json = await data.json();
-    //   setUsers(json.results);
-    // };
     return () => {
       fetchData("https://randomuser.me/api/", setUsers);
       setIsLoading(false);
     };
   }, []);
 
-  // if (isLoading) {
-  //   return <>Loading...</>
-  // }
+  if (isLoading) {
+    return <>Loading...</>;
+  }
 
   const changeName = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,21 +50,21 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Random User App</h1>
+      <h1>Generate a user...</h1>
       <UserCard users={users} />
       <form onSubmit={changeName}>
-        <p>Change first name</p>
+        <p>Change first name:</p>
         <input
           type="text"
-          placeholder="change first name..."
+          // placeholder="change first name..."
           ref={firstNameRef}
         />
       </form>
       <form onSubmit={changeName}>
-        <p>Change last name</p>
+        <p>Change last name:</p>
         <input
           type="text"
-          placeholder="change last name..."
+          // placeholder="change last name..."
           ref={lastNameRef}
         />
       </form>

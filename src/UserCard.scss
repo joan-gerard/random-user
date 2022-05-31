@@ -2,11 +2,10 @@
   display: flex;
   align-items: center;
   border-radius: 25px;
-  border: 1px solid black;
-  padding: 1em;
-  min-width: 460px;
-  height: 180px;
+  background-color: #fba185;
+  padding: 2em;
   margin-bottom: 2em;
+  box-shadow: 0 2px 19px rgb(0 0 0 / 20%), 0 2px 9px rgb(0 0 0 / 20%);
 
   .user {
     display: flex;
@@ -17,6 +16,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      img {
+        box-shadow: 0 1px 15px rgb(0 0 0 / 23%), 0 1px 2px rgb(0 0 0 / 23%);
+      }
 
       h2 {
         margin-bottom: 0;
@@ -30,10 +33,36 @@
 
       p {
         margin: 0;
+        font-weight: 500;
       }
 
       span {
         font-weight: bold;
+        text-shadow: 0.5px 0.5px black;
+      }
+    }
+  }
+}
+
+$breakpoint-mobile-userCard: 545px;
+
+@media (max-width: $breakpoint-mobile-userCard) {
+  .userCard {
+    padding: 8%;
+    .user {
+      display: flex;
+      flex-direction: column;
+
+      .left-panel {
+        margin: 0 0 2em 0;
+      }
+
+      .right-panel {
+        margin: 0;
+
+        p {
+          margin: 0.4em 0;
+        }
       }
     }
   }

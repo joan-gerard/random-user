@@ -4,15 +4,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f3fbfb;
 
   form {
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: white;
+    margin-bottom: 1em;
+    border-radius: 25px;
+    padding: 0.5em 1.1em;
+    box-shadow: 0 2px 19px rgb(0 0 0 / 10%), 0 2px 9px rgb(0 0 0 / 10%);
 
     input {
       height: 25px;
       margin-left: 10px;
+      border-radius: 25px;
+      border: 0.5px solid black;
+      padding: 0.3em 0.8em;
     }
   }
 }
