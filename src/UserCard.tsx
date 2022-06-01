@@ -14,7 +14,7 @@ const UserCard: React.FC<Props> = ({ users }) => {
           <div className="left-panel">
             <img
               src={user.picture.large}
-              alt={`${user.name.first} profile picture`}
+              alt={`${user.name.first} profile`}
             />
             <h2>
               {user.name.first} {user.name.last}
