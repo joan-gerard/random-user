@@ -6,14 +6,14 @@ import { fetchData } from "./utils";
 
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  // const [isLoading, setIsLoading] = useState<boolean>(true);
   const firstNameRef = useRef<HTMLInputElement | null>(null);
   const lastNameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     return () => {
       fetchData("https://randomuser.me/api/", setUsers);
-      setIsLoading(false);
+      // setIsLoading(false);
     };
   }, []);
 
