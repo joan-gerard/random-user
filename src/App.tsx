@@ -17,9 +17,9 @@ function App() {
     };
   }, []);
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
+  // if (isLoading) {
+  //   return <>Loading...</>;
+  // }
 
   const changeName = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
