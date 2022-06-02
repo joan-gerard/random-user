@@ -21,7 +21,7 @@ function App() {
     fetchData()
     // return () => {
     //   fetchData("https://randomuser.me/api/", setUsers);
-      // setIsLoading(false);
+      setIsLoading(false);
     // };
   }, []);
 
