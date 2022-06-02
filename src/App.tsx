@@ -11,10 +11,18 @@ function App() {
   const lastNameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    return () => {
-      fetchData("https://randomuser.me/api/", setUsers);
-      // setIsLoading(false);
+
+    const fetchData = async () => {
+      const data = await fetch("https://randomuser.me/api/");
+      const json = await data.json();
+      await setUsers(json.results);
     };
+
+    fetchData()
+    // return () => {
+    //   fetchData("https://randomuser.me/api/", setUsers);
+      // setIsLoading(false);
+    // };
   }, []);
 
   // if (isLoading) {
