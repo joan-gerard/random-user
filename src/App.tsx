@@ -6,7 +6,7 @@ import { UserType } from "./interface";
 
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const firstNameRef = useRef<HTMLInputElement | null>(null);
   const lastNameRef = useRef<HTMLInputElement | null>(null);
 
@@ -15,7 +15,7 @@ function App() {
     const fetchData = async () => {
       const data = await fetch("https://randomuser.me/api/");
       const json = await data.json();
-      await setUsers(json.results);
+      setUsers(json.results);
     };
 
     fetchData()
@@ -25,9 +25,9 @@ function App() {
     // };
   }, []);
 
-  // if (isLoading) {
-  //   return <>Loading...</>;
-  // }
+  if (isLoading) {
+    return <>Loading...</>;
+  }
 
   const changeName = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
