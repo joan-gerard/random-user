@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.scss";
 import UserCard from "./UserCard";
 import { UserType } from "./interface";
-import { fetchData } from "./utils";
+// import { fetchData } from "./utils";
 
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
