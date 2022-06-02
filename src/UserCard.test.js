@@ -26,20 +26,20 @@ const fakeUser = [
       last: "string",
     },
     dob: {
-      date: 'string',
+      date: "string",
       age: 24,
     },
     location: {
       street: {
         number: 222,
-        name: 'string',
+        name: "string",
       },
-      city: 'string',
-      country: 'string',
+      city: "string",
+      country: "string",
       postcode: 12345,
     },
     picture: {
-      large: 'string',
+      large: "string",
     },
   },
 ];

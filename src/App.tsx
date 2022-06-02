@@ -7,30 +7,25 @@ import { UserType } from "./interface";
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const firstNameRef = useRef<HTMLInputElement | null>(null);
-  // const lastNameRef = useRef<HTMLInputElement | null>(null);'
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  // const sleep = (ms: number) =>
+  //   new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
+      // await sleep(9000);
       const data = await fetch("https://randomuser.me/api/");
       const json = await data.json();
       setUsers(json.results);
+      setIsLoading(false);
     };
 
     fetchData();
-    // return () => {
-    //   fetchData("https://randomuser.me/api/", setUsers);
-    setIsLoading(false);
-    // };
   }, []);
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  // STARTS HERE
   const changeName = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -38,13 +33,11 @@ function App() {
     const pattern = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
     const firstNameValue =
-    firstName.length &&
-    firstName.match(pattern)
+      firstName.length && firstName.match(pattern)
         ? firstName
         : users[0].name.first;
     const lastNameValue =
-    lastName.length &&
-    lastName.match(pattern)
+      lastName.length && lastName.match(pattern)
         ? lastName
         : users[0].name.last;
 
@@ -55,30 +48,23 @@ function App() {
         name: { ...user.name, first: firstNameValue, last: lastNameValue },
       };
       setUsers([updatedUser]);
-      setFirstName('')
-      setLastName('')
+      setFirstName("");
+      setLastName("");
     }
   };
-
-  console.log(firstName);
-  console.log(lastName);
-  console.log('isLoading', isLoading);
 
   return (
     <div className="app">
       <h1>Generate a user...</h1>
-      <UserCard users={users} />
-      <form onSubmit={changeName}>
+      <UserCard users={users} isLoading={isLoading} />
+      <form className="firstName-form" onSubmit={changeName}>
         <p>Change first name:</p>
         <input
           type="text"
           value={firstName}
           onChange={(e) => {
-            setFirstName(e.target.value)
+            setFirstName(e.target.value);
           }}
-
-          // placeholder="change first name..."
-          // ref={firstNameRef}
         />
       </form>
       <form onSubmit={changeName}>
@@ -87,11 +73,8 @@ function App() {
           type="text"
           value={lastName}
           onChange={(e) => {
-            setLastName(e.target.value)
+            setLastName(e.target.value);
           }}
-
-          // placeholder="change last name..."
-          // ref={lastNameRef}
         />
       </form>
     </div>
