@@ -32,3 +32,4 @@ jobs:
         uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: https://randomuser.me/api/
+          configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
