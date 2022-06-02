@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import UserCard from "./UserCard";
 import { UserType } from "./interface";
@@ -7,21 +7,22 @@ import { UserType } from "./interface";
 function App() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const firstNameRef = useRef<HTMLInputElement | null>(null);
-  const lastNameRef = useRef<HTMLInputElement | null>(null);
+  // const firstNameRef = useRef<HTMLInputElement | null>(null);
+  // const lastNameRef = useRef<HTMLInputElement | null>(null);'
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
 
   useEffect(() => {
-
     const fetchData = async () => {
       const data = await fetch("https://randomuser.me/api/");
       const json = await data.json();
       setUsers(json.results);
     };
 
-    fetchData()
+    fetchData();
     // return () => {
     //   fetchData("https://randomuser.me/api/", setUsers);
-      setIsLoading(false);
+    setIsLoading(false);
     // };
   }, []);
 
@@ -29,6 +30,7 @@ function App() {
     return <>Loading...</>;
   }
 
+  // STARTS HERE
   const changeName = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,14 +38,14 @@ function App() {
     const pattern = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
     const firstNameValue =
-      firstNameRef.current?.value.length &&
-      firstNameRef.current?.value.match(pattern)
-        ? firstNameRef.current?.value
+    firstName.length &&
+    firstName.match(pattern)
+        ? firstName
         : users[0].name.first;
     const lastNameValue =
-      lastNameRef.current?.value.length &&
-      lastNameRef.current?.value.match(pattern)
-        ? lastNameRef.current?.value
+    lastName.length &&
+    lastName.match(pattern)
+        ? lastName
         : users[0].name.last;
 
     if (users.length) {
@@ -53,8 +55,14 @@ function App() {
         name: { ...user.name, first: firstNameValue, last: lastNameValue },
       };
       setUsers([updatedUser]);
+      setFirstName('')
+      setLastName('')
     }
   };
+
+  console.log(firstName);
+  console.log(lastName);
+  console.log('isLoading', isLoading);
 
   return (
     <div className="app">
@@ -64,16 +72,26 @@ function App() {
         <p>Change first name:</p>
         <input
           type="text"
+          value={firstName}
+          onChange={(e) => {
+            setFirstName(e.target.value)
+          }}
+
           // placeholder="change first name..."
-          ref={firstNameRef}
+          // ref={firstNameRef}
         />
       </form>
       <form onSubmit={changeName}>
         <p>Change last name:</p>
         <input
           type="text"
+          value={lastName}
+          onChange={(e) => {
+            setLastName(e.target.value)
+          }}
+
           // placeholder="change last name..."
-          ref={lastNameRef}
+          // ref={lastNameRef}
         />
       </form>
     </div>
